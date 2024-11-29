@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-color:#F1F5F9;
+  --secondary-color:#E16449;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +17,37 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+input, textarea{
+  @apply p-3 rounded-md outline-none border border-[--secondary-color]
+}
+
+.btn-primary{
+  @apply px-2 py-2 capitalize border-2 transition-all text-white rounded-md hover:bg-white hover:border-2 hover:border-[--secondary-color] hover:text-[--secondary-color] bg-[--secondary-color] font-bold
+}
+td,th{
+  @apply border-2 p-2 capitalize
+}
+.animate{
+  animation: bounce infinite 1.4s ease;
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: rotate(0deg); 
+  }
+  50% {
+    transform: rotate(20deg); 
+  }
+}
+
+
+.animateLove{
+  animation: animateLove infinite 1.4s ease;
+}
+@keyframes animateLove {
+  0%, 100% {
+    transform: rotate(0deg); 
+  }
+  50% {
+    transform: rotate(-10deg); 
+  }
 }
