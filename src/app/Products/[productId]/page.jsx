@@ -1,6 +1,5 @@
 "use client"
 import axiosInstance from '@/_utils/axiosInstance'
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -16,6 +15,7 @@ const EditProduct = ({params}) => {
     price:0,
     compareAtPrice:0,
     costPrice:0,
+    status:''
 
   })
   const getData =(e)=>{
@@ -28,17 +28,8 @@ const EditProduct = ({params}) => {
 
 
 const updateProduct =async ()=>{
-
   try{
-    
-    const { data } = await axiosInstance.put(`/Product/${productId}`,
-      {
-        headers:{
-          Authorization: `Bearer ${Cookies.get("tokenUser")}`,
-
-        }
-      }
-      , product);
+    const { data } = await axiosInstance.put(`/Product/${productId}`, product);
     
       if(data.isSuccess){ 
         toast.success(data.message)
@@ -66,6 +57,7 @@ const handleSubmit =(e)=>{
       <input onChange={getData} type="number" placeholder=' price ' name="compareAtPrice" id="compareAtPrice"  />
       <input onChange={getData} type="number" placeholder='discount price' name="price" id="price" />
       <input onChange={getData} type="number" placeholder='costPrice' name="costPrice" id="costPrice"  />
+      <input onChange={getData} type="text" placeholder='status' name="status" id="status"  />
       <input className='btn-primary w-fit' type="submit" value="update" />
     </form>
   </div>
