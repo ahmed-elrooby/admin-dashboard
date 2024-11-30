@@ -1,46 +1,61 @@
-import Image from 'next/image';
+"use client"
+import { context } from '@/Context/ContextData'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { MdAutoDelete } from 'react-icons/md'
 import { BiSolidMessageAltEdit } from "react-icons/bi";
-import { MdAutoDelete } from 'react-icons/md';
-import regImg from "../../images/register.svg"
+import SkeletonProduct from '../SkeletonProduct/SkeletonProduct'
 
 const Product = () => {
-  return <>
-    <div className='mt-[20px]'>
-      <div>
-        <Link href="AddProduct" className='btn-primary'>add new products</Link>
-        <div className=' mt-[20px]  mx-auto'>
-          <table className='md:w-[80%] w-full bg-white mx-auto '>
-            <thead>
-              <tr className='capitalize border-2 text-[20px]  text-[--secondary-color] font-bold'>
-                <td > name</td>
-                <td>image</td>
-                <td >operation</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Electronics</td>
-<td><Image className='w-[50px] h-[50px]' src={regImg} alt="productimg"/></td>
+  const {products} = useContext(context)
+  return<>
+  <div className='p-2'>
+  <Link href="AddProduct" className='btn-primary'>add new products</Link>
+  <table  className='mt-5 w-full mx-auto max-w-full'>
+    <thead >
+      <th>#</th>
+      <th>name</th>
+      <th>price</th>
+      <th>description</th>
+      <th>action</th>
+    </thead>
+ {
+  products?
+     <tbody>
+  {
+    products?.map((product,index)=><tr   key={index}>
+      <td>{index + 1}</td>
+      <td>{product.name}</td>
+      <td>{product.price} EGP</td>
+      <td>{product.shortDescription}</td>
+      <td className='flex font-bold  items-center  justify-center border-none gap-[2px]'>
+      <Link href={`Products/${product.productId}`} className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white' >
+<h1 className='md:block hidden'>
+edit
 
-                <td >
-                  <div className='flex md:flex-row flex-col items-start  gap-1 md:items-center ' >
-                    <Link href="/Product/categoryId" className='w-full hover:bg-white border-2 hover:text-[--secondary-color] hover:border-2 hover:border-[--secondary-color] transition-all  text-center justify-center text-[20px] px-2 py-1 text-white font-bold rounded-md items-center gap-1 bg-[--secondary-color] flex'>
-                    edit
-                    <BiSolidMessageAltEdit className='md:block hidden' />
-                  </Link>
-                    <Link href="/" className='w-full  text-center justify-center text-[20px] px-2 py-1 transition-all hover:text-red-800 hover:border-2 hover:border-red-800 hover:bg-white border-2 hover text-white font-bold rounded-md items-center gap-1  bg-red-800 flex'>
-                      delete
-                      <MdAutoDelete className='md:block hidden' />
-                    </Link></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+</h1>
+          <BiSolidMessageAltEdit className='block group-hover:scale-[1.5] transition-all text-[20px] md:text-inherit mx-auto'  />
+
+
+          </Link>
+
+        <div className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white'>
+        <h1 className='md:block hidden'>
+        delete
+
+          </h1>
+          <MdAutoDelete className='block cursor-pointer text-[22px] group-hover:text-red-500 group-hover:scale-[1.5] transition-all md:text-inherit mx-auto' />
+
+         
+
         </div>
-      </div>
-    </div>
+      </td>
+    </tr>)
+  }
+</tbody>:<SkeletonProduct />
+ }
+  </table>
+  </div>
   </>
 }
 

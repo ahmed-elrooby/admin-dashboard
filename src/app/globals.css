@@ -18,18 +18,28 @@
 }
 
 input, textarea{
-  @apply p-3 rounded-md outline-none border border-[--secondary-color]
+  @apply p-3 caret-[--secondary-color] rounded-md outline-none border border-[--secondary-color]
 }
 
 .btn-primary{
-  @apply px-2 py-2 capitalize border-2 transition-all text-white rounded-md hover:bg-white hover:border-2 hover:border-[--secondary-color] hover:text-[--secondary-color] bg-[--secondary-color] font-bold
+  @apply px-2 py-2 capitalize cursor-pointer border-2 transition-all text-white rounded-md hover:bg-white hover:border-2 hover:border-[--secondary-color] hover:text-[--secondary-color] bg-[--secondary-color] font-bold
 }
-td,th{
-  @apply border-2 p-2 capitalize
+tr,td{
+  @apply border-2 text-center 
+}
+tr{
+  @apply border-2 p-[2px] md:p-2 capitalize
+}
+th{
+  @apply text-[16px] md:text-[22px] capitalize bg-[--secondary-color] border-none text-white 
+}
+td{
+  @apply text-[14px] md:text-[18px] 
 }
 .animate{
   animation: bounce infinite 1.4s ease;
 }
+ 
 @keyframes bounce {
   0%, 100% {
     transform: rotate(0deg); 

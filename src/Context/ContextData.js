@@ -1,16 +1,18 @@
 "use client"
 import axios from "axios";
 import Joi from "joi";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import axiosInstance from "@/_utils/axiosInstance";
 
 export const context = createContext();
 
 const ContextData = ({children})=>{
     const [loadding, setLoadding] = useState(false)
-const [token, setToken] = useState(Cookies.get("user") || null)
+    const [products, setProducts] = useState(null)
+const [token, setToken] = useState(Cookies.get("user") )
 const router = useRouter()
    const baseUrl = "http://e-commerce-api.runasp.net/api/";
 
@@ -33,7 +35,6 @@ const [user, setUser] = useState(
   }
   // call api 
 
-
   const postData = async () => {
     setLoadding(true)
     try {
@@ -41,8 +42,9 @@ const [user, setUser] = useState(
       console.log(data)
    
       if (data.isSuccess === true) {
-        Cookies.set("tokenUser", data.data.token, { path: "/" });
+        Cookies.set("tokenUser", data.data.token, { path: "/" ,secure: true});
         Cookies.set("RefreshtokenUser", data.data.refreshToken, { path: "/" });
+        localStorage.setItem("token",data.data.token)
         toast.success(data.message);
         router.push("/")
      
@@ -84,24 +86,21 @@ const [user, setUser] = useState(
   }
 
 
-// gt all category 
-// const allCategories = async ()=>{
-// try{
-//     const {data} = await axios.get(`${baseUrl}category`);
-// console.log(data)
-// }catch(err){console.log(err)}
-// }
-
-// useEffect(() => {
-  
-
-//  allCategories();
-// }, [])
+//get all products 
+const getAllProducts =async ()=>{
+  const {data} =await axiosInstance.get("/api/Product");
+setProducts(data.data);
+console.log(data.data)
+}
+useEffect(() => {
+  getAllProducts()
+}, [])
 
 
 
 
-    return <context.Provider value={{baseUrl,token,logout,getData,makeReg,loadding}}>
+
+    return <context.Provider value={{baseUrl,products ,token,logout,getData,makeReg,loadding}}>
     {children}
     </context.Provider>
 }

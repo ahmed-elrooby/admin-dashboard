@@ -38,7 +38,7 @@ const Login = () => {
               <MdOutlineMarkEmailUnread size={28} />
 
             </div>
-            <input className='w-full pl-[60px] caret-[--secondary-color] ' onChange={getData} type="email" name="email" id="email" />
+            <input className='w-full pl-[60px]  ' onChange={getData} type="email" name="email" id="email" />
             <span className='absolute select-none pt-[4px] pb-[2px] capitalize -top-[2px] text-[14px] text-gray-400 left-[64px]'>email</span>
 
           </div>
@@ -48,7 +48,7 @@ const Login = () => {
               <RiLockPasswordLine size={28} />
 
             </div>
-            <input className='w-full pl-[60px] caret-[--secondary-color] '
+            <input className='w-full pl-[60px]  '
               onChange={getData}
               type={show ? "text" : "password"}
               name="password"

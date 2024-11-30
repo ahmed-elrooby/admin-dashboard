@@ -1,56 +1,53 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode"; 
 
 const baseURL = "http://e-commerce-api.runasp.net";
-const tokenUser = Cookies.get("tokenUser");
-
 const axiosInstance = axios.create({
-    baseURL,
-    headers:{Authorization:`Bearer ${tokenUser}`}
-})
+  baseURL,
+  headers: {
+    Authorization: `Bearer ${Cookies.get("tokenUser")}`,
+  },
+});
 
-axiosInstance.interceptors.request.use(async (req)=>{
+axiosInstance.interceptors.request.use(async (req) => {
+  let tokenUser = Cookies.get("tokenUser");
 
-if(!tokenUser){
+  if (!tokenUser) {
     tokenUser = Cookies.get("tokenUser");
+    req.headers.Authorization = `Bearer ${tokenUser}`;
+  }
 
-req.headers.Authorization = `Bearer ${tokenUser}`
-}
-const user = jwtDecode(tokenUser);
-const isExpired = dayjs().isAfter(dayjs(user.exp * 1000));
+  try {
+    const user = jwtDecode(tokenUser);
+    const isExpired = dayjs().isAfter(dayjs(user.exp * 1000));
 
-if(!isExpired){ // if token not expired
-
-    return req
-
-}
-//else == if token expired
-
-    try{
-        const refreshToken = Cookies.get("RefreshtokenUser");
-
-        const {data} = await axios.post(`${baseURL}/api/Auth/refresh-token`,{
-            refreshToken:refreshToken
+    if (isExpired) {
+      try {
+        const { data } = await axios.post(`${baseURL}/api/Auth/refresh-token`, {
+          accessToken:Cookies.get("tokenUser") ,
+          refreshToken: Cookies.get("RefreshtokenUser"),
         });
+
         if (data.isSuccess) {
-            Cookies.set("tokenUser", data.data.token);
-            req.headers.Authorization = `Bearer ${data.data.token}`;
+          console.log("Token refreshed successfully");
+          Cookies.set("tokenUser", data.data.token);
+          req.headers.Authorization = `Bearer ${data.data.token}`;
         } else {
-            console.log(error)
+          console.error("Token refresh failed:", data.message);
         }
-    
-    }catch(err){
-        console.log(err)
+      } catch (err) {
+        console.log("Error during token refresh:", err);
+        
+      }
     }
+  } catch (err) {
+    console.log("Invalid token:", err.message);
 
-return req
-})
+  }
 
-
-
-
-
+  return req;
+});
 
 export default axiosInstance;

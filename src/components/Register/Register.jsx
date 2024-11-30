@@ -91,12 +91,12 @@ const handleShow = () => {
         <form onSubmit={makeReg} className='flex bg-white rounded-lg  p-6 flex-col gap-3 w-full ' action="">
           <h1 className='text-center flex gap-2 capitalize text-[--secondary-color] text-[20px] md:text-[25px] font-bold'>create account <span className='transition-all animate select-none'><PiHandWavingLight size={36}/></span></h1>
           <span className='capitalize text-[12px] md:text-[17px] text-gray-400'>get starting by creating your new account</span>
-        <input className='caret-[--secondary-color]' onChange={getData} type="text" name="firstName" id="firstName" placeholder='firstName' />
-        <input  className='caret-[--secondary-color]'  onChange={getData} type="text" name="lastName" id="lastName" placeholder='lastName' />
+        <input onChange={getData} type="text" name="firstName" id="firstName" placeholder='firstName' />
+        <input  onChange={getData} type="text" name="lastName" id="lastName" placeholder='lastName' />
             <input  onChange={getData} type="email" name="email" id="email" placeholder='email' />
             <div className='relative w-full  '>
            
-            <input className='w-full  caret-[--secondary-color] '
+            <input className='w-full '
               onChange={getData}
               type={show ? "text" : "password"}
               name="password"
@@ -110,8 +110,8 @@ const handleShow = () => {
             </div>
 
           </div>
-            <input className='caret-[--secondary-color]'   onChange={getData} type="text" name="username" id="username" placeholder='unique username' />
-            <input className='caret-[--secondary-color]'  onChange={getData} type="text" name="position" id="position" placeholder='position' />
+            <input    onChange={getData} type="text" name="username" id="username" placeholder='unique username' />
+            <input  onChange={getData} type="text" name="position" id="position" placeholder='position' />
             <button className='px-2 py-2 capitalize border-2 transition-all text-white rounded-full hover:bg-white hover:border-2 hover:border-[--secondary-color] hover:text-[--secondary-color] w-[80%] m-auto bg-[--secondary-color] font-bold'>
             {loadding ? <FaSpinner className="mx-auto text-[22px] animate-spin" /> : "sign up"}
           </button>

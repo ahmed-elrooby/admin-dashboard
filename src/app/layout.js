@@ -30,9 +30,9 @@ export default function RootLayout({ children }) {
       <ContextData>
       <div className="flex  items-start  ">
       <Aside/>
-                <section className="w-full min-h-screen  bg-[--main-color]   ">
+                <section className="w-full min-h-screen mx-auto bg-[--main-color]   ">
                   <Header />
-                  <div className="p-4">
+                  <div className="p-2">
                   {children}
                   </div>
       

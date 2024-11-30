@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react'
 const Home = () => {
     const [category, setCategory] = useState([]);
     const getCategory = async ()=>{
-        const response = await axiosInstance.get("/api/Category");
-        console.log(response)
+        const {data} = await axiosInstance.get("/api/Category");
     }
 
     useEffect(() => {
