@@ -1,8 +1,13 @@
 "use client"
+import axiosInstance from '@/_utils/axiosInstance'
+import { context } from '@/Context/ContextData'
 import axios from 'axios'
-import React, { useState } from 'react'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+import React, { useContext, useState } from 'react'
 
 const AddProducts = () => {
+  const {setProducts} = useContext(context)
   const [product, setProduct] = useState({
     name:"",
     description:"",
@@ -10,8 +15,10 @@ const AddProducts = () => {
     price:"",
     compareAtPrice:"",
     costPrice:"",
-    
+    status:""
   })
+
+  const router = useRouter()
 
   //  get datat from user 
   const handleChange = (e)=>{
@@ -26,8 +33,16 @@ const AddProducts = () => {
 
   const sendData = async()=>{
     try{
-      const {data} = await axios.post("http://e-commerce-api.runasp.net/api/Product",product)
+      const {data} = await axiosInstance.post("/api/Product",product,{
+        headers:{
+          Authorization: `Bearer ${Cookies.get("tokenUser")}`,
+        }
+      })
       console.log(data)
+      setProducts((prevProducts) => [...prevProducts, data.data]); // هات العناصر القديمه وضيف عليها العناصر الجديده
+
+    
+      router.push("/Products")
     }catch(err){
       console.log(err)
     }
@@ -49,6 +64,7 @@ const AddProducts = () => {
         <input required onChange={handleChange} type="number" name="price" id="price" placeholder='price' />
         <input required onChange={handleChange} type="number" name="compareAtPrice" id="compareAtPrice" placeholder='compareAtPrice' />
         <input type="number"  onChange={handleChange} name="costPrice" id="costPrice" placeholder='costPrice' />
+        <input type="text"  onChange={handleChange} name="status" id="status" placeholder='status' />
         <button className='mr-auto px-6 font-bold text-[20px] py-1 rounded-md hover:bg-white hover:text-[--secondary-color] bg-[--secondary-color] border-2 text-white hover:border-2 hover:border-[--secondary-color]' type='submit'>save</button>
       </form>
 

@@ -26,10 +26,10 @@ const Product = () => {
     products?.map((product,index)=><tr   key={index}>
       <td>{index + 1}</td>
       <td>{product.name}</td>
-      <td>{product.price} EGP</td>
+      <td className='whitespace-nowrap'>{product.price} EGP</td>
       <td>{product.shortDescription}</td>
       <td className='flex font-bold  items-center  justify-center border-none gap-[2px]'>
-      <Link href={`Products/${product.productId}`} className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white' >
+      <Link href={`Products/Update/${product.productId}`} className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white' >
 <h1 className='md:block hidden'>
 edit
 
@@ -39,7 +39,7 @@ edit
 
           </Link>
 
-        <div className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white'>
+        <Link href={`/Products/Delete/${product.productId}`} className='flex group transition-all  hover:border-[--secondary-color] hover:bg-white hover:text-[--secondary-color] w-full gap-1 items-center bg-[--secondary-color] px-[3px] py-[2px] rounded-sm text-white'>
         <h1 className='md:block hidden'>
         delete
 
@@ -48,7 +48,7 @@ edit
 
          
 
-        </div>
+        </Link>
       </td>
     </tr>)
   }

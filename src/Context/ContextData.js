@@ -12,7 +12,6 @@ export const context = createContext();
 const ContextData = ({children})=>{
     const [loadding, setLoadding] = useState(false)
     const [products, setProducts] = useState(null)
-const [token, setToken] = useState(Cookies.get("user") )
 const router = useRouter()
    const baseUrl = "http://e-commerce-api.runasp.net/api/";
 
@@ -44,7 +43,6 @@ const [user, setUser] = useState(
       if (data.isSuccess === true) {
         Cookies.set("tokenUser", data.data.token, { path: "/" ,secure: true});
         Cookies.set("RefreshtokenUser", data.data.refreshToken, { path: "/" });
-        localStorage.setItem("token",data.data.token)
         toast.success(data.message);
         router.push("/")
      
@@ -80,8 +78,8 @@ const [user, setUser] = useState(
     }
   }
   const logout = ()=>{
-    Cookies.remove("user");
-    setToken(null)
+    Cookies.remove("tokenUser");
+    Cookies.remove("RefreshtokenUser");
     router.push("/Login");
   }
 
@@ -100,7 +98,7 @@ useEffect(() => {
 
 
 
-    return <context.Provider value={{baseUrl,products ,token,logout,getData,makeReg,loadding}}>
+    return <context.Provider value={{baseUrl,products,setProducts ,logout,getData,makeReg,loadding}}>
     {children}
     </context.Provider>
 }

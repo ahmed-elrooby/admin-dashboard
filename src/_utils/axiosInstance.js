@@ -1,7 +1,7 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode"; 
+import {jwtDecode} from "jwt-decode"; 
 
 const baseURL = "http://e-commerce-api.runasp.net";
 const axiosInstance = axios.create({
@@ -13,6 +13,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(async (req) => {
   let tokenUser = Cookies.get("tokenUser");
+  let refreshTokenuser =Cookies.get("RefreshtokenUser")
 
   if (!tokenUser) {
     tokenUser = Cookies.get("tokenUser");
@@ -26,8 +27,8 @@ axiosInstance.interceptors.request.use(async (req) => {
     if (isExpired) {
       try {
         const { data } = await axios.post(`${baseURL}/api/Auth/refresh-token`, {
-          accessToken:Cookies.get("tokenUser") ,
-          refreshToken: Cookies.get("RefreshtokenUser"),
+          accessToken:tokenUser ,
+          refreshToken: refreshTokenuser,
         });
 
         if (data.isSuccess) {
