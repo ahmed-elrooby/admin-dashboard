@@ -37,7 +37,9 @@ const  EvevtCalender =() => {
   ];
   const [value, onChange] = useState(null);
   useEffect(() => {
-    setValue(new Date());
+    if (typeof window !== 'undefined') {
+      setValue(new Date()); 
+    }
   }, []);
 
   return (

@@ -44,7 +44,7 @@ const TableOfOrders = () => {
         </th>
     </tr>
 </thead>
-{/* {
+{
     orders?
     <tbody className='divide-y dark:divide-[#101010] divide-gray-200 text-gray-900 dark:text-white bg-white dark:bg-[#171717]'>
 
@@ -83,9 +83,8 @@ const TableOfOrders = () => {
     }
     
     </tbody>:<SkeletonOrders/>
-} */}
+}
 
-<SkeletonOrders/>
 
 
         </table>

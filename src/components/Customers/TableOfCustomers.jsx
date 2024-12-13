@@ -46,7 +46,7 @@ const TableOfCustomers = () => {
         </th>
     </tr>
 </thead>
-{/* {
+{
     allCustomers?<SkeletonCustomers/>:
     <tbody className='divide-y dark:divide-[#101010] divide-gray-200 text-gray-900 dark:text-white bg-white dark:bg-[#171717]'>
 
@@ -98,7 +98,7 @@ const TableOfCustomers = () => {
     }
     
     </tbody>
-} */}
+}
 
 <SkeletonCustomers />
 
