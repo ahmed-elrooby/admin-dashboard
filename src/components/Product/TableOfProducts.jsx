@@ -58,7 +58,7 @@ const TableOfProducts = () => {
                  <td className='whitespace-nowrap   px-4 pl-4 pr-3 text-sm font-medium text-[--secondary-color] sm:pl-6'>
             {ele.name}
      <Image
-                                src={productImage?.imageUrl}
+                                src={productImage?productImage?.imageUrl:"/placeholder.png"}
                                 alt='img'
                                 width={80}
                                 height={80}

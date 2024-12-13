@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { FaEllipsisH } from 'react-icons/fa';
@@ -35,7 +35,10 @@ const  EvevtCalender =() => {
     },
     
   ];
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState(null);
+  useEffect(() => {
+    setValue(new Date());
+  }, []);
 
   return (
     <div className=' w-full bg-white shadow p-5 rounded-lg dark:bg-[#171717]'>
