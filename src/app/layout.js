@@ -2,8 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Aside from "@/components/Aside/Aside";
 import Header from "@/components/Header/Header";
-import ContextData from "@/Context/ContextData";
 import { Toaster } from "react-hot-toast";
+import ContextData from "@/Providers/Context/ContextData";
+import ThemeProvider from "@/Providers/Tehme/ThemeProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,21 +24,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} bg-white dark:bg-[#171717]  ${geistMono.variable} antialiased`}
       >
       <ContextData>
-      <div className="flex  items-start  ">
-      <Aside/>
-                <section className="w-full min-h-screen mx-auto bg-[--main-color]   ">
-                  <Header />
-                  <div className="p-2">
-                  {children}
-                  </div>
-      
-                </section>
+        <ThemeProvider>
+        <Header />
+
+<div className="flex  items-start  ">
+<Aside/>
+          <section className="w-full pl-5   min-h-screen mx-auto dark:bg-[#101010] bg-[--main-color]   ">
+           
+            <div className="py-2">
+            {children}
             </div>
+
+          </section>
+      </div>
+        </ThemeProvider>
+    
       </ContextData>
       <Toaster />
 

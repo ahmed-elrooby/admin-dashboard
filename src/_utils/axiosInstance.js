@@ -30,7 +30,7 @@ axiosInstance.interceptors.request.use(async (req) => {
           accessToken:tokenUser ,
           refreshToken: refreshTokenuser,
         });
-
+console.log("data is " + data)
         if (data.isSuccess) {
           console.log("Token refreshed successfully");
           Cookies.set("tokenUser", data.data.token);

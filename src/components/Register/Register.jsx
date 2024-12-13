@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import React, { useContext, useState } from 'react'
 import regImage from "../../images/register.svg"
-import  { context } from '@/Context/ContextData'
 import Joi from 'joi'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -12,9 +11,10 @@ import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { PiHandWavingLight } from "react-icons/pi";
 
 import Link from 'next/link'
+import { context } from '@/Providers/Context/ContextData'
+import axiosInstance from '@/_utils/axiosInstance'
 const Register = () => {
   const router = useRouter()
-const {baseUrl} = useContext(context);
 const [loadding, setLoadding] = useState(false)
 const [show, setShow] = useState(false)
 
@@ -41,13 +41,13 @@ console.log(user)
 const postData = async ()=>{
   setLoadding(true)
  try{
-  const {data} = await axios.post(`${baseUrl}Auth/register/admin`,user);
-  console.log(data)
-  if(data.isSuccess === true){
-    toast.success(data.message);
+  const {data} = await axios.post(`http://e-commerce-api.runasp.net/api/Auth/register/admin`,user);
+  console.log(`data for register ${data}`)
+  if(data.isSuccess ){
+    toast.success("Admin registered successfully");
 router.push("/Login")
   }else{
-    toast.error("error")
+    toast.error(data.message)
 
   }
   console.log(data)
@@ -75,9 +75,10 @@ const makeReg = (e)=>{
   const res = schema.validate(user,{abortEarly:false})
   if(res.error === undefined){
     postData();
-    toast.success("there are not error")
+    toast.success("Admin registered successfully. Please check your email to confirm your account.")
   }else{
-    toast.error("there are error")
+    toast.error("Email is required",
+    "Password must be at least 8 characters long")
   }
 }
 //handle show password
@@ -88,7 +89,7 @@ const handleShow = () => {
   <div className='p-3 mx-auto min-h-screen w-full'>
     <span className='w-[100px] block mx-auto h-[3px] bg-[--secondary-color] rounded-full'></span>
     <div className='flex flex-col md:flex-row  p-4  items-center gap-4'>
-        <form onSubmit={makeReg} className='flex bg-white rounded-lg  p-6 flex-col gap-3 w-full ' action="">
+        <form onSubmit={makeReg} className='flex dark:bg-[#171717] bg-white rounded-lg  p-6 flex-col gap-3 w-full ' action="">
           <h1 className='text-center flex gap-2 capitalize text-[--secondary-color] text-[20px] md:text-[25px] font-bold'>create account <span className='transition-all animate select-none'><PiHandWavingLight size={36}/></span></h1>
           <span className='capitalize text-[12px] md:text-[17px] text-gray-400'>get starting by creating your new account</span>
         <input onChange={getData} type="text" name="firstName" id="firstName" placeholder='firstName' />

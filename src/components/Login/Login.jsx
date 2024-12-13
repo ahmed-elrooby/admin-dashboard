@@ -2,13 +2,13 @@
 import Image from 'next/image'
 import React, { useContext, useState } from 'react'
 import loginimg from "../../images/login.svg"
-import { context } from '@/Context/ContextData'
 
 import {  FaSpinner } from "react-icons/fa";
 import Link from 'next/link'
 import { MdOutlineMarkEmailUnread } from 'react-icons/md'
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { context } from '@/Providers/Context/ContextData';
 
 const Login = () => {
   const { getData,makeReg,loadding } = useContext(context);
@@ -28,7 +28,7 @@ const Login = () => {
           loading='lazy'
 
           className='w-full md:w-[400px] object-cover' src={loginimg} alt='register' />
-        <form onSubmit={makeReg} className='flex  relative px-4 py-6 bg-white flex-col gap-5 rounded-lg w-full md:w-[80%] ' action="">
+        <form onSubmit={makeReg} className='flex  relative px-4 py-6 bg-white dark:bg-[#171717] flex-col gap-5 rounded-lg w-full md:w-[80%] ' action="">
           <h1 className='md:text-[25px] text-[16px] font-bold capitalize text-[--secondary-color] flex  gap-4 mt-8 md:mt-6 relative w-fit '>welcome back <span className=' md:text-[30px] absolute -top-1 -right-[50px]   text-[20px]'> 🤗</span>
           </h1>
           <span className='capitalize text-gray-400'>enter your email and password</span>
@@ -63,7 +63,7 @@ const Login = () => {
 
           </div>
 
-          <Link className='capitalize transition-all hover:text-[#f5522d]  text-[--secondary-color] ml-auto' href="/">forget password ?</Link>
+          <Link className='capitalize transition-all hover:text-[#f5522d]  text-[--secondary-color] ml-auto' href="/Forgetpassword">forget password ?</Link>
 
           <button className='px-2 py-2 capitalize border-2 transition-all text-white rounded-full hover:bg-white hover:border-2 hover:border-[--secondary-color] hover:text-[--secondary-color] w-[80%] m-auto bg-[--secondary-color] font-bold'>
             {loadding ? <FaSpinner className="mx-auto text-[22px] animate-spin" /> : "login"}

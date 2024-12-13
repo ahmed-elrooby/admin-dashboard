@@ -1,29 +1,28 @@
 "use client"
-import { context } from '@/Context/ContextData'
-import Cookies from 'js-cookie'
-import Link from 'next/link'
-import React, { useContext, } from 'react'
-const Header = () => {
-  const {logout} = useContext(context);
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import logo from "../../images/logo.png"
+import ThemChanger from '@/Providers/Tehme/ThemChanger'
+import User from '../User/User'
 
-let token = Cookies.get("tokenUser")
+const Header = () => {
+const router = useRouter();
+ 
   return <>
-<div>
-  <div className='flex items-center   justify-end bg-white px-5 py-3'>
-   
+<div className='w-full'>
+  <div className='flex items-center dark:bg-[#171717]   justify-between bg-white px-5 py-3'>
+    <div>
+    <Image src={logo} className='w-[50px] mt-[10px] mx-auto  h-[50px] ' alt='img'/>
+
+    </div>
     <ul className='flex items-center gap-2'>
+      <li><ThemChanger/></li>
    
-    {token  ? (
-            <li onClick={logout} className='btn-primary cursor-pointer select-none'>
-                Log out
-            </li>
-          ) : (
-            <li>
-              <Link className='btn-primary' href="/Login">
-                Login
-              </Link>
-            </li>
-          )}
+    
+          <li>
+            <User />
+          </li>
     </ul>
   </div>
 </div>
