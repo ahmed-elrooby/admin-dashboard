@@ -11,6 +11,8 @@ import Cookies from "js-cookie";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa";
 import { context } from "@/Providers/Context/ContextData";
+import { TiThMenuOutline } from "react-icons/ti";
+import { RiCloseLargeLine } from "react-icons/ri";
 
 
 const Aside = () => {
@@ -48,9 +50,13 @@ const {setIsLoggedIn}= useContext(context)
     <div className=" relative ">
       <div
         onClick={toggleSidebar}
-        className="bg-[--secondary-color] hover:bg-[#B8B5E8] pl-0 md:p-2 p-1 transition-all duration-300 rounded-r-lg cursor-pointer absolute -right-[27px] md:-right-[39px] top-[-12px] text-white z-10"
+        className="bg-[--secondary-color]
+         hover:bg-[#3f33e1] w-fit md:p-2 p-1
+          transition-all duration-300 rounded-sm
+           cursor-pointer absolute left-[20px]
+            md:left-3 top-[-48px] md:top-[-55px] text-white z-10"
       >
-        {isClosed ? <FaAngleRight size={24} /> : <FaAngleLeft size={24} />}
+        {isClosed ? <TiThMenuOutline size={24} /> : <RiCloseLargeLine size={24} />}
       </div>
 
       <aside

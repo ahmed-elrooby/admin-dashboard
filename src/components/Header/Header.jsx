@@ -11,9 +11,9 @@ const router = useRouter();
  
   return <>
 <div className='w-full'>
-  <div className='flex items-center dark:bg-[#171717]   justify-between bg-white px-5 py-3'>
+  <div className='flex items-center dark:bg-[#171717] pl-[58px]   justify-between bg-white px-5 py-3'>
     <div>
-    <Image src={logo} className='w-[50px] mt-[10px] mx-auto  h-[50px] ' alt='img'/>
+    <Image src={logo} className='md:w-[45px] mt-[10px] mx-auto w-[35px] h-[35px]  md:h-[45px] ' alt='img'/>
 
     </div>
     <ul className='flex items-center gap-2'>

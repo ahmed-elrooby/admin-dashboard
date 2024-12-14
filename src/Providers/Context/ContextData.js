@@ -42,11 +42,12 @@ const [user, setUser] = useState(
 console.log(`id of user here ${data.data.id}`)
    
       if (data.isSuccess ) {
-        setIsLoggedIn(true)
         Cookies.set("tokenUser", data.data.token, {path: "/"} );
         Cookies.set("RefreshtokenUser", data.data.refreshToken, { path: "/" });
         Cookies.set("adminId", data.data.id)
         toast.success(data.message);
+        setIsLoggedIn(true)
+console.log(isLoggedIn)
         router.push("/")
      
       } else {
@@ -96,9 +97,8 @@ console.log(`id of user here ${data.data.id}`)
   };
 
 useEffect(() => {
-  if(!isLoggedIn){
     getUser()
-  }
+ 
 
 
 }, [isLoggedIn])

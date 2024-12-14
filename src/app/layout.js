@@ -8,7 +8,7 @@ import ThemeProvider from "@/Providers/Tehme/ThemeProvider";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
-  weight: ['400', '700'],  
+  weight: ['400', '700'],
 });
 
 export const metadata = {
@@ -23,24 +23,24 @@ export default function RootLayout({ children }) {
       <body
         className={` ${ubuntu.className} bg-white dark:bg-[#171717]  antialiased`}
       >
-      <ContextData>
-        <ThemeProvider>
-        <Header />
+        <ContextData>
+          <ThemeProvider>
+            <Header />
 
-<div className="flex  items-start  ">
-<Aside/>
-          <section className="w-full pt-4 pl-0   min-h-screen mx-auto dark:bg-[#101010] bg-[--main-color]   ">
-           
-            <div className="py-2">
-            {children}
+            <div className="flex  items-start  ">
+              <Aside />
+              <section className="w-full pt-4 min-h-screen mx-auto dark:bg-[#101010] bg-[--main-color]   ">
+
+                <div className="py-2">
+                  {children}
+                </div>
+
+              </section>
             </div>
+          </ThemeProvider>
 
-          </section>
-      </div>
-        </ThemeProvider>
-    
-      </ContextData>
-      <Toaster />
+        </ContextData>
+        <Toaster />
 
       </body>
     </html>

@@ -28,16 +28,18 @@ const currentDate = new Date()
 
 
   <div className='mx-auto w-full bg-transparent  p-1 rounded-lg'>
+  <div className='bg-white  p-4 rounded-lg mx-auto dark:bg-[#171717]'>
   {
-      isLoggedIn?<>
-      <h1 className='capitalize '>hello, <span className='font-bold text-[--secondary-color]'>{dataOfAdmin?.firstName} {dataOfAdmin?.lastName}</span></h1>
+      isLoggedIn?<div>
+      <h1 className='capitalize '>hello, <span className='font-bold text-[--secondary-color]'>{dataOfAdmin?.firstName} {dataOfAdmin?.lastName} 😍</span></h1>
 
-      </>:<div >
+      </div>:<div >
       <p>Welcome to our <span className='text-[--secondary-color]  text-[20px] font-bold'>Website</span> 😊</p>
       <p className='text-gray-700 dark:text-[#F5F5F5] capitalize'>Join us now and <Link className='text-[--secondary-color] font-bold transition-all hover:text-[#453de1ab]' href="/Login">log in</Link> to enjoy our amazing services.</p>
       </div>
     }
-    <div className='flex gap-1 md:flex-row flex-col items-center'>
+  </div>
+    <div className='flex gap-1 md:flex-row flex-col '>
   
 <div className='md:w-2/3  w-full mx-auto '>
 
