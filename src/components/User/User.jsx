@@ -1,13 +1,15 @@
 "use client"
+import { context } from '@/Providers/Context/ContextData';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaRegUser } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6'
 import { GoSignOut } from "react-icons/go";
 
 const User = () => {
+  const {setIsLoggedIn} = useContext(context)
     const router = useRouter();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const handleDropDown =()=>{
@@ -17,6 +19,8 @@ const User = () => {
     const handleLogout =()=>{
         Cookies.remove("tokenUser" ,{path:"/"})
         Cookies.remove("RefreshtokenUser",{path:"/"})
+        setIsLoggedIn(false)
+
         setIsDropdownOpen(false)
          router.push("/Login")
     }

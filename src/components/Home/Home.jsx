@@ -16,22 +16,20 @@ import Announcements from '../Announcements/Announcements';
 import ProductHome from '../ProductHome/ProductHome';
 
 const Home = () => {
-  const [adminId, setAdminId] = useState(null);
 
 const currentDate = new Date()
-  useEffect(() => {
-    const id = Cookies.get("adminId");
-    setAdminId(id);
-  }, []);
-  const {dataOfAdmin,categories,products,allCustomers,orders} = useContext(context)
+ 
+  const {isLoggedIn,categories,products,dataOfAdmin,allCustomers,orders} = useContext(context);
+  console.log(isLoggedIn)
   return <>
+
 
 
 
 
   <div className='mx-auto w-full bg-transparent  p-1.5 rounded-lg'>
   {
-      adminId?<>
+      isLoggedIn?<>
       <h1 className='capitalize '>hello, <span className='font-bold text-[--secondary-color]'>{dataOfAdmin?.firstName} {dataOfAdmin?.lastName}</span></h1>
 
       </>:<div>

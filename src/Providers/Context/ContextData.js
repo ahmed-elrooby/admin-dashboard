@@ -23,6 +23,7 @@ const [user, setUser] = useState(
       password: "",
     }
   )
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   //to get data from user 
   const getData = (e) => {
@@ -40,7 +41,8 @@ const [user, setUser] = useState(
       console.log("token of admin   " + data.data.token)
 console.log(`id of user here ${data.data.id}`)
    
-      if (data.isSuccess === true) {
+      if (data.isSuccess ) {
+        setIsLoggedIn(true)
         Cookies.set("tokenUser", data.data.token, {path: "/"} );
         Cookies.set("RefreshtokenUser", data.data.refreshToken, { path: "/" });
         Cookies.set("adminId", data.data.id)
@@ -93,6 +95,13 @@ console.log(`id of user here ${data.data.id}`)
     }
   };
 
+useEffect(() => {
+  if(isLoggedIn){
+    getUser()
+  }
+
+
+}, [isLoggedIn])
 
 
 
@@ -194,13 +203,12 @@ useEffect(() => {
   getAllCategories();
   fetchImages();
   getAllProducts();
-  getUser();
   getAllOrders();
   getCustomerId();
   getAllCustomers();
 
 }, [])
-    return <context.Provider value={{allCustomers,dataOfAdmin,orders,userName,loadding,setLoadding,categories,getAllCategories,images,fetchImages,setImages,getAllProducts,products,setProducts ,getData,makeReg,loadding,setCategories}}>
+    return <context.Provider value={{allCustomers,setIsLoggedIn,isLoggedIn,dataOfAdmin,orders,userName,loadding,setLoadding,categories,getAllCategories,images,fetchImages,setImages,getAllProducts,products,setProducts ,getData,makeReg,loadding,setCategories}}>
     {children}
     </context.Provider>
 }

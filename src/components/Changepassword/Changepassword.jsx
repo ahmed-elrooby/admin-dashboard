@@ -82,7 +82,7 @@ const Changepassword = () => {
 
                     </div>
                     <input onChange={getNewData} className='w-full pl-[60px]  ' type="text" name="username" id="username" />
-                    <span className='absolute select-none pt-[4px] pb-[2px] capitalize -top-[2px] text-[14px] text-gray-400 left-[64px]'>username</span>
+                    <span className='absolute select-none pt-[4px] pb-[2px] capitalize -top-[2px] text-[14px] text-gray-400 left-[64px]'>unique username</span>
 
                 </div>
                 <div className='relative w-full  '>

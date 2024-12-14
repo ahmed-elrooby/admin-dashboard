@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdOutlineMarkunreadMailbox } from "react-icons/md";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { RxDashboard } from "react-icons/rx";
@@ -10,11 +10,12 @@ import { FaBarsStaggered, FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import Cookies from "js-cookie";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa";
+import { context } from "@/Providers/Context/ContextData";
 
 
 const Aside = () => {
   const [isClosed, setIsClosed] = useState(false);
-
+const {setIsLoggedIn}= useContext(context)
   const toggleSidebar = () => {
     setIsClosed((prev) => !prev);
   };
@@ -39,6 +40,7 @@ const Aside = () => {
   const handleLogout = ()=>{
         Cookies.remove("tokenUser" ,{path:"/"})
         Cookies.remove("RefreshtokenUser",{path:"/"})
+        setIsLoggedIn(false)
         router.push("/Login")
       
       }
