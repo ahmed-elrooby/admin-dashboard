@@ -23,7 +23,8 @@ const Announcements = () => {
       ];
       
   return <>
-    <div className=' w-full bg-white p-5 shadow rounded-lg dark:bg-[#171717]'>
+    <div className='  w-full mx-auto bg-white p-5 shadow rounded-lg dark:bg-[#171717]'>
+    <div>
     <div className='flex justify-between items-center '>
         <h1>Announcements</h1>
         <span>view all</span>
@@ -40,6 +41,7 @@ const Announcements = () => {
 </div>
 )
 }
+    </div>
     </div>
 </div>
   </>

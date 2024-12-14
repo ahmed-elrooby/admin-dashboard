@@ -48,7 +48,7 @@ const {setIsLoggedIn}= useContext(context)
     <div className=" relative ">
       <div
         onClick={toggleSidebar}
-        className="bg-[--secondary-color] hover:bg-[#B8B5E8] pl-0 md:p-2 p-1 transition-all duration-300 rounded-r-lg cursor-pointer absolute -right-[27px] md:-right-[39px] top-3 text-white z-10"
+        className="bg-[--secondary-color] hover:bg-[#B8B5E8] pl-0 md:p-2 p-1 transition-all duration-300 rounded-r-lg cursor-pointer absolute -right-[27px] md:-right-[39px] top-[-12px] text-white z-10"
       >
         {isClosed ? <FaAngleRight size={24} /> : <FaAngleLeft size={24} />}
       </div>
@@ -74,7 +74,7 @@ const {setIsLoggedIn}= useContext(context)
           ))}
         
 
-              { Cookies.get("tokenUser")?   <li
+              { Cookies.get("tokenUser")?<li
            onClick={handleLogout}
                 className={`flex items-center cursor-pointer gap-2 w-full text-[18px] p-2 capitalize rounded-l-lg transition-all  ${hoverClass} font-bold`}
               >

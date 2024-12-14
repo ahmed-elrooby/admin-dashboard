@@ -8,7 +8,7 @@ import { MdEmail } from 'react-icons/md'
 const Profile = () => {
  const {dataOfAdmin} = useContext(context)
   return <>
-  <div className='shadow-lg w-[95%] dark:bg-[#171717] bg-white pb-[67px]   pt-8 rounded-lg pl-7'>
+  <div className='shadow-lg w-full md:w-[95%] dark:bg-[#171717] bg-white pb-[67px]   pt-8 rounded-lg pl-7'>
     <h1
      className='font-bold mt-1 mb-8 w-[95%] relative after:absolute after:bottom-0 after:left-0 pt-1 pb-3 after:h-[1px] after:w-full after:content-[""] text-[20px] md:text-[25px] after:bg-gray-500'>General Setting</h1>
   <section className='flex w-[95%] flex-col gap-4 items-start'>

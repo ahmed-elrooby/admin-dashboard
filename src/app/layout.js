@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
 
 <div className="flex  items-start  ">
 <Aside/>
-          <section className="w-full pl-5   min-h-screen mx-auto dark:bg-[#101010] bg-[--main-color]   ">
+          <section className="w-full pt-4 pl-0   min-h-screen mx-auto dark:bg-[#101010] bg-[--main-color]   ">
            
             <div className="py-2">
             {children}

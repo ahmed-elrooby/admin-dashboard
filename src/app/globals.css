@@ -17,9 +17,17 @@
     --secondary-color:#52A2E8;
   }
 }
+.pl-7{
+  padding-left: 3px !important;
+}
 .react-calendar{
   @apply bg-white dark:bg-[#171717]
 }
+.react-calendar {
+  width: 90% !important;
+  border: none !important;
+}
+
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
  @apply  bg-[#e6e6e6] dark:bg-[#282828]

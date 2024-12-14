@@ -96,7 +96,7 @@ console.log(`id of user here ${data.data.id}`)
   };
 
 useEffect(() => {
-  if(isLoggedIn){
+  if(!isLoggedIn){
     getUser()
   }
 
